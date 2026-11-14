@@ -1,307 +1,254 @@
-<div align="center">
+
+
+<br />
 
 <div align="center">
 
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://codium.ai/images/pr_agent/logo-dark.png" width="330">
-  <source media="(prefers-color-scheme: light)" srcset="https://codium.ai/images/pr_agent/logo-light.png" width="330">
-  <img src="https://codium.ai/images/pr_agent/logo-light.png" alt="logo" width="330">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/logo-dark.png" width="330">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/logo-light.png" width="330">
+  <img src="https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/logo-light.png" alt="logo" width="330">
 
 </picture>
-<br/>
-Making pull requests less painful with an AI agent
+<br>
+The Original Open-Source PR Reviewer
+<br><br>
+<a href="https://github.com/The-PR-Agent/pr-agent/releases/latest">
+<img alt="Release" src="https://img.shields.io/github/v/release/The-PR-Agent/pr-agent?style=for-the-badge" height="20">
+</a>
+<a href="https://pypi.org/project/pr-agent/">
+<img alt="PyPI" src="https://img.shields.io/pypi/v/pr-agent?style=for-the-badge" height="20">
+</a>
+<a href="https://hub.docker.com/r/pragent/pr-agent">
+<img alt="Docker Hub" src="https://img.shields.io/badge/docker%20hub-pragent%2Fpr--agent-2496ED?style=for-the-badge&amp;logo=docker&amp;logoColor=white" height="20">
+</a>
+<a href="https://docs.pr-agent.ai/">
+<img alt="Documentation" src="https://img.shields.io/badge/docs-docs.pr--agent.ai-267bbd?style=for-the-badge" height="20">
+</a>
+<a href="https://codecov.io/gh/The-PR-Agent/pr-agent">
+<img alt="Coverage" src="https://img.shields.io/codecov/c/github/The-PR-Agent/pr-agent/main?style=for-the-badge" height="20">
+</a>
+<a href="https://github.com/The-PR-Agent/pr-agent/blob/main/LICENSE">
+<img alt="License" src="https://img.shields.io/github/license/The-PR-Agent/pr-agent?style=for-the-badge" height="20">
+</a>
+<a href="https://github.com/the-pr-agent/pr-agent/commits/main">
+<img alt="GitHub" src="https://img.shields.io/github/last-commit/the-pr-agent/pr-agent/main?style=for-the-badge" height="20">
+</a>
+<a href="https://github.com/The-PR-Agent/pr-agent/actions/workflows/build-and-test.yaml?query=branch%3Amain">
+<img alt="Build and test" src="https://img.shields.io/github/actions/workflow/status/The-PR-Agent/pr-agent/build-and-test.yaml?branch=main&amp;event=push&amp;style=for-the-badge" height="20">
+</a>
 </div>
 
-[![GitHub license](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/Codium-ai/pr-agent/blob/main/LICENSE)
-[![Discord](https://badgen.net/badge/icon/discord?icon=discord&label&color=purple)](https://discord.com/channels/1057273017547378788/1126104260430528613)
-[![Twitter](https://img.shields.io/twitter/follow/codiumai)](https://twitter.com/codiumai)
-    <a href="https://github.com/Codium-ai/pr-agent/commits/main">
-    <img alt="GitHub" src="https://img.shields.io/github/last-commit/Codium-ai/pr-agent/main?style=for-the-badge" height="20">
-    </a>
-</div>
+---
+
+ This repository contains the open-source PR Agent Project.
+ It is not the Qodo offering for open-source projects.
+
+PR-Agent is an open-source, AI-powered code review agent and a community-maintained legacy project of Qodo. It is distinct from Qodo's primary AI code review offering, which provides a feature-rich, context-aware experience. Qodo offers a free version for open-source projects and integrates seamlessly with GitHub, GitLab, Bitbucket, and Azure DevOps for high-quality automated reviews.
+
+
+## Sponsors
+
+PR-Agent is a community-maintained open-source project, with its ongoing development supported by our sponsors. If you'd like to support the project, consider [becoming a sponsor](https://github.com/sponsors/naorpeled).
+
+<p align="center">
+  <h3 align="center">🥇 Gold Sponsor</h3>
+</p>
+
+<p align="center">
+  <a target="_blank" href="https://www.qodo.ai/">
+    <img alt="Qodo — Gold sponsor" src="https://www.qodo.ai/wp-content/uploads/2025/03/qodo-logo.svg" width="150">
+  </a>
+</p>
+
+<p align="center">
+  <a target="_blank" href="https://www.qodo.ai/solutions/open-source/">Free version of Qodo for open-source projects</a>
+</p>
+
 
 ## Table of Contents
-- [News and Updates](#news-and-updates)
-- [Overview](#overview)
-- [Example results](#example-results)
-- [Try it now](#try-it-now)
-- [Installation](#installation)
-- [PR-Agent Pro 💎](#pr-agent-pro-)
-- [How it works](#how-it-works)
-- [Why use PR-Agent?](#why-use-pr-agent)
-  
+
+- [Getting Started](#getting-started)
+- [Why Use PR-Agent?](#why-use-pr-agent)
+- [Features](#features)
+- [See It in Action](#see-it-in-action)
+- [How It Works](#how-it-works)
+- [Data Privacy](#data-privacy)
+- [Contributing](#contributing)
+
+## Getting Started
+
+> [!NOTE]
+> **Docker Hub namespace migration.** Releases `0.34.2` and later are published under [`pragent/pr-agent`](https://hub.docker.com/r/pragent/pr-agent). Older releases (up to and including `v0.31`) remain available at the legacy [`codiumai/pr-agent`](https://hub.docker.com/r/codiumai/pr-agent) namespace as a frozen archive — no new images are pushed there. Update any pinned `image:` / `docker pull` / `uses: docker://` references when upgrading to `0.34.2+`.
+
+### 🚀 Quick Start for PR-Agent
+
+#### 1. GitHub Action (Recommended)
+
+Add automated PR reviews to your repository with a simple workflow file:
+
+```yaml
+# .github/workflows/pr-agent.yml
+name: PR Agent
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  pr_agent_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: PR Agent action step
+      uses: the-pr-agent/pr-agent@main
+      env:
+        OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+[Full GitHub Action setup guide](https://docs.pr-agent.ai/installation/github/#run-as-a-github-action)
+
+#### 2. CLI Usage (Local Development)
+
+Run PR-Agent locally on your repository:
+
+```bash
+pip install "pr-agent[github]"
+export OPENAI_KEY=your_key_here
+pr-agent --pr_url https://github.com/owner/repo/pull/123 review
+```
+Git provider SDKs are optional extras: install the one for your provider ([list](https://docs.pr-agent.ai/installation/locally/#using-pip-package)), or `pr-agent[all]` for every integration.
+[Complete CLI setup guide](https://docs.pr-agent.ai/usage-guide/automations_and_usage/#local-repo-cli)
+
+#### 3. Other Platforms
+
+- [GitLab webhook setup](https://docs.pr-agent.ai/installation/gitlab/)
+- [BitBucket app installation](https://docs.pr-agent.ai/installation/bitbucket/)
+- [Azure DevOps setup](https://docs.pr-agent.ai/installation/azure/)
+
 ## News and Updates
 
-### March 24, 2024
-PR-Agent is now available for easy installation via [pip](https://pr-agent-docs.codium.ai/installation/locally/#using-pip-package).
-
-### March 17, 2024
-- A new feature is now available for the review tool: [`require_can_be_split_review`](https://pr-agent-docs.codium.ai/tools/review/#enabledisable-features). 
-If set to true, the tool will add a section that checks if the PR contains several themes, and can be split into smaller PRs.
-
-<kbd><img src="https://codium.ai/images/pr_agent/multiple_pr_themes.png" width="512"></kbd>
-
-### March 10, 2024
-- A new [knowledge-base website](https://pr-agent-docs.codium.ai/) for PR-Agent is now available. It includes detailed information about the different tools, usage guides and more, in an accessible and organized format.
-
-### March 8, 2024
-
-- A new tool, [Find Similar Code](https://pr-agent-docs.codium.ai/tools/similar_code/) 💎 is now available. 
-<br>This tool retrieves the most similar code components from inside the organization's codebase, or from open-source code:
-
-<kbd><a href="https://codium.ai/images/pr_agent/similar_code.mp4"><img src="https://codium.ai/images/pr_agent/similar_code_global2.png" width="512"></a></kbd>
-
-(click on the image to see an instructional video)
-
-### Feb 29, 2024
-- You can now use the repo's [wiki page](https://pr-agent-docs.codium.ai/usage-guide/configuration_options/) to set configurations for PR-Agent 💎
-
-<kbd><img src="https://codium.ai/images/pr_agent/wiki_configuration.png" width="512"></kbd>
+Full notes for every release are on the [Releases page](https://github.com/the-pr-agent/pr-agent/releases).
 
 
-## Overview
+## Why Use PR-Agent?
+
+### 🎯 Built for Real Development Teams
+
+**Fast & Affordable**: Each command (`/review`, `/ask`) uses a single LLM call (~30 seconds, low cost)
+
+**Handles Any PR Size**: Our [PR Compression strategy](https://docs.pr-agent.ai/core-abilities/compression_strategy/) effectively processes both small and large PRs
+
+**Highly Customizable**: JSON-based prompting allows easy customization of review categories and behavior via [configuration files](pr_agent/settings/configuration.toml)
+
+**Platform Agnostic**:
+- **Git Providers**: GitHub, GitLab, BitBucket, Azure DevOps, Gitea
+- **Deployment**: CLI, GitHub Actions, Docker, self-hosted, webhooks
+- **AI Models**: OpenAI GPT, Anthropic Claude, Google Gemini, DeepSeek, Mistral, and any other model reachable through LiteLLM (Azure OpenAI, AWS Bedrock, Vertex AI, Databricks, OpenRouter, Ollama, and more) — see [Changing a model](https://docs.pr-agent.ai/usage-guide/changing_a_model/)
+
+**Open Source Benefits**:
+- Full control over your data and infrastructure
+- Customize prompts and behavior for your team's needs
+- No vendor lock-in
+- Community-driven development
+
+## Features
+
 <div style="text-align:left;">
 
-CodiumAI PR-Agent aims to help efficiently review and handle pull requests, by providing AI feedbacks and suggestions
+See the current [feature and git provider support matrix](https://docs.pr-agent.ai/overview/supported_platforms/) in the PR-Agent documentation.
 
-- See the [Installation Guide](https://pr-agent-docs.codium.ai/installation/) for instructions on installing and running the tool on different git platforms.
-
-- See the [Usage Guide](https://pr-agent-docs.codium.ai/usage-guide/) for instructions on running the PR-Agent commands via different interfaces, including _CLI_, _online usage_, or by _automatically triggering_ them when a new PR is opened.
-
-- See the [Tools Guide](https://pr-agent-docs.codium.ai/tools/) for a detailed description of the different tools.
-
-Supported commands per platform:
-
-|       |                                                                                                                   | GitHub             | Gitlab             | Bitbucket          | Azure DevOps       |
-|-------|-------------------------------------------------------------------------------------------------------------------|:--------------------:|:--------------------:|:--------------------:|:--------------------:|
-| TOOLS | Review                                                                                                            | ✅ | ✅ | ✅ | ✅ |
-|       | ⮑ Incremental                                                                                                     | ✅ |                    |                    |                    |
-|       | ⮑ [SOC2 Compliance](https://pr-agent-docs.codium.ai/tools/review/#soc2-ticket-compliance) 💎            | ✅ | ✅ | ✅ | ✅ |
-|       | Describe                                                                                                          | ✅ | ✅ | ✅ | ✅ |
-|       | ⮑ [Inline File Summary](https://pr-agent-docs.codium.ai/tools/describe#inline-file-summary) 💎          | ✅ |                    |                    |                    |
-|       | Improve                                                                                                           | ✅ | ✅ | ✅ | ✅ |
-|       | ⮑ Extended                                                                                                        | ✅ | ✅ | ✅ | ✅ |
-|       | Ask                                                                                                               | ✅ | ✅ | ✅ | ✅ |
-|       | ⮑ [Ask on code lines](https://pr-agent-docs.codium.ai/tools/ask#ask-lines)                              | ✅ | ✅ |                    |                    |
-|       | [Custom Suggestions](https://pr-agent-docs.codium.ai/tools/custom_suggestions/) 💎                      | ✅ | ✅ | ✅ | ✅ |
-|       | [Test](https://pr-agent-docs.codium.ai/tools/test/) 💎                                                  | ✅ | ✅ |                    | ✅ |
-|       | Reflect and Review                                                                                                | ✅ | ✅ | ✅ | ✅ |
-|       | Update CHANGELOG.md                                                                                               | ✅ | ✅ | ✅ | ✅ |
-|       | Find Similar Issue                                                                                                | ✅ |                    |                    |                    |
-|       | [Add PR Documentation](https://pr-agent-docs.codium.ai/tools/documentation/) 💎                         | ✅ | ✅ |                   | ✅ |
-|       | [Custom Labels](https://pr-agent-docs.codium.ai/tools/custom_labels/) 💎                                | ✅ | ✅ |                    | ✅ |
-|       | [Analyze](https://pr-agent-docs.codium.ai/tools/analyze/) 💎                                            | ✅ | ✅ |                    | ✅ |
-|       | [CI Feedback](https://pr-agent-docs.codium.ai/tools/ci_feedback/) 💎                                    | ✅ |                    |                    |                    |
-|       | [Similar Code](https://pr-agent-docs.codium.ai/tools/similar_code/) 💎                                  | ✅ |                    |                    |                    |
-|       |                                                                                                                   |                    |                    |                    |                    |
-| USAGE | CLI                                                                                                               | ✅ | ✅ | ✅ | ✅ |
-|       | App / webhook                                                                                                     | ✅ | ✅ | ✅ | ✅ |
-|       | Tagging bot                                                                                                       | ✅ |                    |                    |                    |
-|       | Actions                                                                                                           | ✅ |                    | ✅ |                    |
-|       |                                                                                                                   |                    |                    |                    |                    |
-| CORE  | PR compression                                                                                                    | ✅ | ✅ | ✅ | ✅ |
-|       | Repo language prioritization                                                                                      | ✅ | ✅ | ✅ | ✅ |
-|       | Adaptive and token-aware file patch fitting                                                                       | ✅ | ✅ | ✅ | ✅ |
-|       | Multiple models support                                                                                           | ✅ | ✅ | ✅ | ✅ |
-|       | [Static code analysis](https://pr-agent-docs.codium.ai/core-abilities/#static-code-analysis) 💎         | ✅ | ✅ | ✅ | ✅ |
-|       | [Global and wiki configurations](https://pr-agent-docs.codium.ai/usage-guide/configuration_options/) 💎 | ✅ | ✅ | ✅ | ✅ |
-|       | [PR interactive actions](https://www.codium.ai/images/pr_agent/pr-actions.mp4) 💎                                 | ✅ |                    |                    |                    |
-- 💎 means this feature is available only in [PR-Agent Pro](https://www.codium.ai/pricing/)
+⚠️ `/help_docs` is temporarily disabled since `v0.36.1` pending a fix for a credential-exposure issue ([#2445](https://github.com/the-pr-agent/pr-agent/issues/2445)).
 
 [//]: # (- Support for additional git providers is described in [here]&#40;./docs/Full_environments.md&#41;)
 ___
 
-‣ **Auto Description ([`/describe`](https://pr-agent-docs.codium.ai/tools/describe/))**: Automatically generating PR description - title, type, summary, code walkthrough and labels.
-\
-‣ **Auto Review ([`/review`](https://pr-agent-docs.codium.ai/tools/review/))**: Adjustable feedback about the PR, possible issues, security concerns, review effort and more.
-\
-‣ **Code Suggestions ([`/improve`](https://pr-agent-docs.codium.ai/tools/improve/))**: Code suggestions for improving the PR.
-\
-‣ **Question Answering ([`/ask ...`](https://pr-agent-docs.codium.ai/tools/ask/))**: Answering free-text questions about the PR.
-\
-‣ **Update Changelog ([`/update_changelog`](https://pr-agent-docs.codium.ai/tools/update_changelog/))**: Automatically updating the CHANGELOG.md file with the PR changes.
-\
-‣ **Find Similar Issue ([`/similar_issue`](https://pr-agent-docs.codium.ai/tools/similar_issues/))**: Automatically retrieves and presents similar issues.
-\
-‣ **Add Documentation 💎  ([`/add_docs`](https://pr-agent-docs.codium.ai/tools/documentation/))**: Generates documentation to methods/functions/classes that changed in the PR.
-\
-‣ **Generate Custom Labels 💎 ([`/generate_labels`](https://pr-agent-docs.codium.ai/tools/custom_labels/))**: Generates custom labels for the PR, based on specific guidelines defined by the user.
-\
-‣ **Analyze 💎 ([`/analyze`](https://pr-agent-docs.codium.ai/tools/analyze/))**: Identify code components that changed in the PR, and enables to interactively generate tests, docs, and code suggestions for each component.
-\
-‣ **Custom Suggestions 💎 ([`/custom_suggestions`](https://pr-agent-docs.codium.ai/tools/custom_suggestions/))**: Automatically generates custom suggestions for improving the PR code, based on specific guidelines defined by the user.
-\
-‣ **Generate Tests 💎 ([`/test component_name`](https://pr-agent-docs.codium.ai/tools/test/))**: Generates unit tests for a selected component, based on the PR code changes.
-\
-‣ **CI Feedback 💎 ([`/checks ci_job`](https://pr-agent-docs.codium.ai/tools/ci_feedback/))**: Automatically generates feedback and analysis for a failed CI job.
-\
-‣ **Similar Code 💎 ([`/find_similar_component`](https://pr-agent-docs.codium.ai/tools/similar_code//))**: Retrieves the most similar code components from inside the organization's codebase, or from open-source code.
-___
+## See It in Action
 
-## Example results
 </div>
-<h4><a href="https://github.com/Codium-ai/pr-agent/pull/530">/describe</a></h4>
+<h4><a href="https://github.com/the-pr-agent/pr-agent/pull/530">/describe</a></h4>
 <div align="center">
 <p float="center">
-<img src="https://www.codium.ai/images/pr_agent/describe_new_short_main.png" width="512">
+<img src="https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/describe_new_short_main.png" width="512">
 </p>
 </div>
 <hr>
 
-<h4><a href="https://github.com/Codium-ai/pr-agent/pull/732#issuecomment-1975099151">/review</a></h4>
+<h4><a href="https://github.com/the-pr-agent/pr-agent/pull/732#issuecomment-1975099151">/review</a></h4>
 <div align="center">
 <p float="center">
 <kbd>
-<img src="https://www.codium.ai/images/pr_agent/review_new_short_main.png" width="512">
+<img src="https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/review_new_short_main.png" width="512">
 </kbd>
 </p>
 </div>
 <hr>
 
-<h4><a href="https://github.com/Codium-ai/pr-agent/pull/732#issuecomment-1975099159">/improve</a></h4>
+<h4><a href="https://github.com/the-pr-agent/pr-agent/pull/732#issuecomment-1975099159">/improve</a></h4>
 <div align="center">
 <p float="center">
 <kbd>
-<img src="https://www.codium.ai/images/pr_agent/improve_new_short_main.png" width="512">
+<img src="https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/improve_new_short_main.png" width="512">
 </kbd>
 </p>
 </div>
+
 <hr>
 
-<h4><a href="https://github.com/Codium-ai/pr-agent/pull/530">/generate_labels</a></h4>
-<div align="center">
-<p float="center">
-<kbd><img src="https://www.codium.ai/images/pr_agent/geneare_custom_labels_main_short.png" width="300"></kbd>
-</p>
-</div>
+### Usage Examples
 
-[//]: # (<h4><a href="https://github.com/Codium-ai/pr-agent/pull/78#issuecomment-1639739496">/reflect_and_review:</a></h4>)
+PR-Agent commands run as a comment on a PR or from the CLI. A few common ones:
 
-[//]: # (<div align="center">)
+```bash
+# Comment on a PR (GitHub/GitLab/Bitbucket/…):
+/describe
+/review
+/ask "What does this PR change?" # free-text Q&A about the PR
 
-[//]: # (<p float="center">)
+# Issue-scoped commands run on an issue instead of a PR:
+/similar_issue # find similar issues in the repository
 
-[//]: # (<img src="https://www.codium.ai/images/reflect_and_review.gif" width="800">)
+# Or locally via the CLI:
+pr-agent --pr_url <PR_URL> review
+pr-agent --issue_url <ISSUE_URL> similar_issue
+```
 
-[//]: # (</p>)
+See the [Commands docs](https://docs.pr-agent.ai/commands/#usage-examples) for the full list of commands with example commands, and each command's page for screenshots and options.
 
-[//]: # (</div>)
-
-[//]: # (<h4><a href="https://github.com/Codium-ai/pr-agent/pull/229#issuecomment-1695020538">/ask:</a></h4>)
-
-[//]: # (<div align="center">)
-
-[//]: # (<p float="center">)
-
-[//]: # (<img src="https://www.codium.ai/images/ask-2.gif" width="800">)
-
-[//]: # (</p>)
-
-[//]: # (</div>)
-
-[//]: # (<h4><a href="https://github.com/Codium-ai/pr-agent/pull/229#issuecomment-1695024952">/improve:</a></h4>)
-
-[//]: # (<div align="center">)
-
-[//]: # (<p float="center">)
-
-[//]: # (<img src="https://www.codium.ai/images/improve-2.gif" width="800">)
-
-[//]: # (</p>)
-
-[//]: # (</div>)
-<div align="left">
-
-
-</div>
 <hr>
 
+## How It Works
 
-## Try it now
+The following diagram illustrates PR-Agent commands and their flow:
 
-Try the GPT-4 powered PR-Agent instantly on _your public GitHub repository_. Just mention `@CodiumAI-Agent` and add the desired command in any PR comment. The agent will generate a response based on your command.
-For example, add a comment to any pull request with the following text:
-```
-@CodiumAI-Agent /review
-```
-and the agent will respond with a review of your PR
+![PR-Agent Commands](https://raw.githubusercontent.com/The-PR-Agent/pr-agent/main/docs/static/img/diagram-v0.9.png)
 
-![Review generation process](https://www.codium.ai/images/demo-2.gif)
+## Data Privacy
 
+### Self-hosted PR-Agent
 
-To set up your own PR-Agent, see the [Installation](https://pr-agent-docs.codium.ai/installation/) section below.
-Note that when you set your own PR-Agent or use CodiumAI hosted PR-Agent, there is no need to mention `@CodiumAI-Agent ...`. Instead, directly start with the command, e.g., `/ask ...`.
-
----
-
-## Installation
-To use your own version of PR-Agent, you first need to acquire two tokens:
-
-1. An OpenAI key from [here](https://platform.openai.com/), with access to GPT-4.
-2. A GitHub personal access token (classic) with the repo scope.
-
-There are several ways to use PR-Agent:
-
-**Locally**
-- [Using pip package](https://pr-agent-docs.codium.ai/installation/locally/#using-pip-package)
-- [Using Docker image](https://pr-agent-docs.codium.ai/installation/locally/#using-docker-image)
-- [Run from source](https://pr-agent-docs.codium.ai/installation/locally/#run-from-source)
-
-**GitHub specific methods**
-- [Run as a GitHub Action](https://pr-agent-docs.codium.ai/installation/github/#run-as-a-github-action)
-- [Run as a GitHub App](https://pr-agent-docs.codium.ai/installation/github/#run-as-a-github-app)
-
-**GitLab specific methods**
-- [Run a GitLab webhook server](https://pr-agent-docs.codium.ai/installation/gitlab/)
-
-**BitBucket specific methods**
-- [Run as a Bitbucket Pipeline](https://pr-agent-docs.codium.ai/installation/bitbucket/)
-
-## PR-Agent Pro 💎
-[PR-Agent Pro](https://www.codium.ai/pricing/) is a hosted version of PR-Agent, provided by CodiumAI. It is available for a monthly fee, and provides the following benefits:
-1. **Fully managed** - We take care of everything for you - hosting, models, regular updates, and more. Installation is as simple as signing up and adding the PR-Agent app to your GitHub\BitBucket repo.
-2. **Improved privacy** - No data will be stored or used to train models. PR-Agent Pro will employ zero data retention, and will use an OpenAI account with zero data retention.
-3. **Improved support** - PR-Agent Pro users will receive priority support, and will be able to request new features and capabilities.
-4. **Extra features** -In addition to the benefits listed above, PR-Agent Pro will emphasize more customization, and the usage of static code analysis, in addition to LLM logic, to improve results. 
-See [here](https://pr-agent-docs.codium.ai/#pr-agent-pro) for a list of features available in PR-Agent Pro.
-
-
-
-## How it works
-
-The following diagram illustrates PR-Agent tools and their flow:
-
-![PR-Agent Tools](https://codium.ai/images/pr_agent/diagram-v0.9.png)
-
-Check out the [PR Compression strategy](https://pr-agent-docs.codium.ai/core-abilities/#pr-compression-strategy) page for more details on how we convert a code diff to a manageable LLM prompt
-
-## Why use PR-Agent?
-
-A reasonable question that can be asked is: `"Why use PR-Agent? What makes it stand out from existing tools?"`
-
-Here are some advantages of PR-Agent:
-
-- We emphasize **real-life practical usage**. Each tool (review, improve, ask, ...) has a single GPT-4 call, no more. We feel that this is critical for realistic team usage - obtaining an answer quickly (~30 seconds) and affordably.
-- Our [PR Compression strategy](https://pr-agent-docs.codium.ai/core-abilities/#pr-compression-strategy)  is a core ability that enables to effectively tackle both short and long PRs.
-- Our JSON prompting strategy enables to have **modular, customizable tools**. For example, the '/review' tool categories can be controlled via the [configuration](pr_agent/settings/configuration.toml) file. Adding additional categories is easy and accessible.
-- We support **multiple git providers** (GitHub, Gitlab, Bitbucket), **multiple ways** to use the tool (CLI, GitHub Action, GitHub App, Docker, ...), and **multiple models** (GPT-4, GPT-3.5, Anthropic, Cohere, Llama2).
-
-
-## Data privacy
-
-If you host PR-Agent with your OpenAI API key, it is between you and OpenAI. You can read their API data privacy policy here:
+- If you host PR-Agent with your OpenAI API key, it is between you and OpenAI. You can read their API data privacy policy here:
 https://openai.com/enterprise-privacy
 
-When using PR-Agent Pro 💎, hosted by CodiumAI, we will not store any of your data, nor will we use it for training.
-You will also benefit from an OpenAI account with zero data retention.
+## Contributing
 
-## Links
+To contribute to the project, get started by reading our [Contributing Guide](https://github.com/the-pr-agent/pr-agent/blob/main/CONTRIBUTING.md).
 
-[![Join our Discord community](https://raw.githubusercontent.com/Codium-ai/codiumai-vscode-release/main/media/docs/Joincommunity.png)](https://discord.gg/kG35uSHDBc)
+For local verification, run `PYTHONPATH=. uv run pytest` from the repository root; it discovers the unit-test suite under `tests/unittest` by default. End-to-end tests under `tests/e2e_tests` require provider credentials and should be invoked explicitly, for example `PYTHONPATH=. uv run pytest tests/e2e_tests/test_github_app.py`.
 
-- Discord community: https://discord.gg/kG35uSHDBc
-- CodiumAI site: https://codium.ai
-- Blog: https://www.codium.ai/blog/
-- Troubleshooting: https://www.codium.ai/blog/technical-faq-and-troubleshooting/
-- Support: support@codium.ai
+
+## Big News for PR-Agent
+
+PR-Agent has a new home!
+
+After years of building this tool alongside the community, Qodo has donated PR-Agent to the open-source community - and we couldn't be more excited about what comes next.
+
+The project now lives in the PR-Agent org on GitHub, is fully community-owned, and is open for contributions and additional maintainers.
+
+What else changed:
+- Docs moved to - [docs.pr-agent.ai](https://docs.pr-agent.ai/)
+- Qodo Merge (Qodo 1.0), the hosted URL, which was the enterprise version of PR-Agent, has been rebranded and evolved into Qodo (Qodo 2.0), a full AI code review platform.
+
+## ❤️ Community
+
+This open-source release remains here as a community contribution from Qodo — the origin of modern AI-powered code collaboration. We’re proud to share it and inspire developers worldwide.
+
+The project now has its first external maintainer, Naor ([@naorpeled](https://github.com/naorpeled)), and is currently in the process of being donated to an open-source foundation.

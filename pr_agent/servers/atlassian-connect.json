@@ -16,8 +16,9 @@
   },
   "scopes": [
     "account",
-    "repository",
-    "pullrequest"
+    "repository:write",
+    "pullrequest:write",
+    "wiki"
   ],
   "contexts": [
     "account"
@@ -29,5 +30,9 @@
         "url": "/webhook"
       }
     ]
+  },
+  "links": {
+    "privacy": "https://qodo.ai/privacy-policy",
+    "terms": "https://qodo.ai/terms"
   }
 }
